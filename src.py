@@ -1,6 +1,12 @@
 #encoding: utf-8
 __author__ = 'yyin'
 
+import os.path, os, re
+import read_file, sys
+import excel_map
+
+test_filename = 'c:\\users\\yyin\\documents\\github\\deal_brief\\tmp\\test.xls'
+
 
 class brief:
     Dealowner=u''
@@ -15,15 +21,15 @@ class brief:
     Rytrate=0.0
     Selloff=u''
 
-    def rate_to_txt(self.Rytrate):
-        n=str(Rytrate*100)+'%'
-        return unicode(n,'utf-8')
+    # def rate_to_txt(self):
+        # n=str(self.Rytrate*100)+'%'
+        # return unicode(n,'utf-8')
 
-    def str_to_uni(txt):
-        if type(txt)==str:
-            return unicode(txt,'utf-8')
-        else:
-            return txt
+    # def str_to_uni(txt):
+        # if type(txt)==str:
+            # return unicode(txt,'utf-8')
+        # else:
+            # return txt
 
     Template=ur"""Dear Guenther,
 
@@ -49,7 +55,26 @@ Royalty Rate: [Rytrate]
 
 Sell-off period: [Selloff]
 """
+	# def toBrief(self):
+		# n = self.Template
+		# n = n.replace('')
 
+def init(filename):
+	#filename = sys.argv[1]
+	if os.path.exists(filename) == False:
+		return 'Error! File not exists.'
+	
+	sheet = read_file.excel_open(filename)
+	target = brief()
+	Map = excel_map.xlsMap2  
+	
+	return sheet, target, Map
 
-
-
+	
+if __name__ == '__main__':
+	#init(filename)
+	#sheet, target, Map = init(test_filename)
+	#print target.Template
+	init(test_filename)
+	
+	
