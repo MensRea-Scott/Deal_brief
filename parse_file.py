@@ -25,6 +25,28 @@ def single_parse(sheet, keyword, offset):
 	
 	
 def list_parse(sheet, keyword, offset):
+	rgA = sheet.Columns.Find(keyword)
+	
+	if rgA.Value is None:
+		return 'ERROR'
+	
+	result = []
+	rgB = sheet.Columns.Offset(offset[0],offset[1])
+	
+	while True:
+		n = rgB.Value
+		if n in result：
+			rgB = rgB.Offset(2,1)
+			continue
+		elif n is None:
+			break
+		else:
+			result.append(n)
+		
+		rgB = rgB.Offset(2,1)
+			
+	pass	
+	
 	pass
 
 
