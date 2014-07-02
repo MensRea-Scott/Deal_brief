@@ -4,9 +4,10 @@ __author__ = 'yyin'
 import os.path, os, re
 import read_file, sys
 import excel_map
+import parse_file
 
 test_filename = 'c:\\users\\yyin\\documents\\github\\deal_brief\\tmp\\test.xls'
-
+out_path = r'e:\\'
 
 class brief:
     Dealowner=u''
@@ -59,6 +60,17 @@ Sell-off period: [Selloff]
 		# n = self.Template
 		# n = n.replace('')
 
+		
+def brief_output(tgt, template):
+	for i in tgt:
+		template = template.replace('['+str(i)+']',tgt[i])
+	
+	out_file=open(os.path.join(out_path,'deal_brief.txt'),'w')
+	out_file.write(template)
+	out_file.close()
+	
+		
+	
 def init(filename):
 	#filename = sys.argv[1]
 	if os.path.exists(filename) == False:
@@ -68,13 +80,18 @@ def init(filename):
 	target = brief()
 	Map = excel_map.xlsMap2  
 	
-	return sheet, target, Map
+	#return sheet, target, Map
+	tgt1=parse_file.parse1(sheet, Map)
+	print tgt1
+	brief_output(tgt1, target.template)
+
+
 
 	
-if __name__ == '__main__':
-	#init(filename)
-	#sheet, target, Map = init(test_filename)
-	#print target.Template
-	init(test_filename)
+# if __name__ == '__main__':
+	# #init(filename)
+	# #sheet, target, Map = init(test_filename)
+	# #print target.Template
+	# init(test_filename)
 	
 	

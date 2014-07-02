@@ -29,5 +29,6 @@ xlsMap2 = {'Dealowner': [u'Category Manager',(1,3),'single'],
 	'Enddate': [u'Contract End Date',(1,3),'single'], 
 	'Category': [u'Licensed Articles',(3,1),'list'], 
 	'Rytrate': [u'Royalty Rate/授权金比例',(2,1),'list'], 
-	'Selloff': [u'Sell Off Days',(1,3),'single']
+	'Selloff': [u'Sell Off Days',(1,3),'single'],
+	'Channel': [u'Distribution Channels',(2,1),'list']
 }#140625 调试通过

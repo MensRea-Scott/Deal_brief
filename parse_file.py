@@ -30,24 +30,27 @@ def list_parse(sheet, keyword, offset):
 	if rgA.Value is None:
 		return 'ERROR'
 	
+	print rgA.Row, rgA.Column
+	
 	result = []
-	rgB = sheet.Columns.Offset(offset[0],offset[1])
+	rgB = rgA.Offset(offset[0],offset[1])
 	
 	while True:
 		n = rgB.Value
-		if n in result：
+		if n is None:
+			print 'ERROR: No Value Found'
+			break
+			#return 'ERROR: No Value Found'
+			
+		elif n in result:
 			rgB = rgB.Offset(2,1)
 			continue
-		elif n is None:
-			break
 		else:
 			result.append(n)
 		
 		rgB = rgB.Offset(2,1)
 			
-	pass	
-	
-	pass
+	return result
 
 
 def parse1(sheet, Map):
